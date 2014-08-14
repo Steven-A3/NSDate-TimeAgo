@@ -132,7 +132,7 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
     NSDateComponents *components = [calendar components:
                                     NSYearCalendarUnit|
                                     NSMonthCalendarUnit|
-                                    NSWeekCalendarUnit|
+                                    NSWeekOfYearCalendarUnit|
                                     NSDayCalendarUnit|
                                     NSHourCalendarUnit|
                                     NSMinuteCalendarUnit|
@@ -243,10 +243,10 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
         }
         else
         {
-            NSInteger startWeek = [calendar ordinalityOfUnit:NSWeekCalendarUnit
+            NSInteger startWeek = [calendar ordinalityOfUnit:NSWeekOfYearCalendarUnit
                                                       inUnit:NSEraCalendarUnit
                                                      forDate:self];
-            NSInteger endWeek = [calendar ordinalityOfUnit:NSWeekCalendarUnit
+            NSInteger endWeek = [calendar ordinalityOfUnit:NSWeekOfYearCalendarUnit
                                                     inUnit:NSEraCalendarUnit
                                                    forDate:now];
             NSInteger diffWeeks = endWeek - startWeek;
