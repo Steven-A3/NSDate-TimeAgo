@@ -130,13 +130,13 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate * now = [NSDate date];
     NSDateComponents *components = [calendar components:
-                                    NSYearCalendarUnit|
-                                    NSMonthCalendarUnit|
-                                    NSWeekOfYearCalendarUnit|
-                                    NSDayCalendarUnit|
-                                    NSHourCalendarUnit|
-                                    NSMinuteCalendarUnit|
-                                    NSSecondCalendarUnit
+                                    NSCalendarUnitYear|
+                                    NSCalendarUnitMonth|
+                                   NSCalendarUnitWeekOfYear|
+                                   NSCalendarUnitDay|
+                                   NSCalendarUnitHour|
+                                   NSCalendarUnitMinute|
+                                   NSCalendarUnitSecond
                                                fromDate:self
                                                  toDate:now
                                                 options:0];
@@ -205,25 +205,25 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
     NSDate * now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    NSDateComponents *components = [calendar components:NSHourCalendarUnit
+    NSDateComponents *components = [calendar components:NSCalendarUnitHour
                                                fromDate:self
                                                  toDate:now
                                                 options:0];
     
     if (components.hour >= 6) // if more than 6 hours ago, change precision
     {
-        NSInteger startDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
-                                                 inUnit:NSEraCalendarUnit
+        NSInteger startDay = [calendar ordinalityOfUnit:NSCalendarUnitDay
+                                                 inUnit:NSCalendarUnitEra
                                                 forDate:self];
-        NSInteger endDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
-                                               inUnit:NSEraCalendarUnit
+        NSInteger endDay = [calendar ordinalityOfUnit:NSCalendarUnitDay
+                                               inUnit:NSCalendarUnitEra
                                               forDate:now];
         
         NSInteger diffDays = endDay - startDay;
         if (diffDays == 0) // today!
         {
-            NSDateComponents * startHourComponent = [calendar components:NSHourCalendarUnit fromDate:self];
-            NSDateComponents * endHourComponent = [calendar components:NSHourCalendarUnit fromDate:self];
+            NSDateComponents * startHourComponent = [calendar components:NSCalendarUnitHour fromDate:self];
+            NSDateComponents * endHourComponent = [calendar components:NSCalendarUnitHour fromDate:self];
             if (startHourComponent.hour < 12 &&
                 endHourComponent.hour > 12)
             {
@@ -260,10 +260,10 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
             }
             else
             {
-                NSInteger startMonth = [calendar ordinalityOfUnit:NSMonthCalendarUnit
+                NSInteger startMonth = [calendar ordinalityOfUnit:NSCalendarUnitMonth
                                                            inUnit:NSEraCalendarUnit
                                                           forDate:self];
-                NSInteger endMonth = [calendar ordinalityOfUnit:NSMonthCalendarUnit
+                NSInteger endMonth = [calendar ordinalityOfUnit:NSCalendarUnitMonth
                                                          inUnit:NSEraCalendarUnit
                                                         forDate:now];
                 NSInteger diffMonths = endMonth - startMonth;
@@ -277,10 +277,10 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
                 }
                 else
                 {
-                    NSInteger startYear = [calendar ordinalityOfUnit:NSYearCalendarUnit
+                    NSInteger startYear = [calendar ordinalityOfUnit:NSCalendarUnitYear
                                                               inUnit:NSEraCalendarUnit
                                                              forDate:self];
-                    NSInteger endYear = [calendar ordinalityOfUnit:NSYearCalendarUnit
+                    NSInteger endYear = [calendar ordinalityOfUnit:NSCalendarUnitYear
                                                             inUnit:NSEraCalendarUnit
                                                            forDate:now];
                     NSInteger diffYears = endYear - startYear;
