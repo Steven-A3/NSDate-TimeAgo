@@ -243,11 +243,11 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
         }
         else
         {
-            NSInteger startWeek = [calendar ordinalityOfUnit:NSWeekOfYearCalendarUnit
-                                                      inUnit:NSEraCalendarUnit
+            NSInteger startWeek = [calendar ordinalityOfUnit:NSCalendarUnitWeekOfYear
+                                                      inUnit:NSCalendarUnitEra
                                                      forDate:self];
-            NSInteger endWeek = [calendar ordinalityOfUnit:NSWeekOfYearCalendarUnit
-                                                    inUnit:NSEraCalendarUnit
+            NSInteger endWeek = [calendar ordinalityOfUnit:NSCalendarUnitWeekOfYear
+                                                    inUnit:NSCalendarUnitEra
                                                    forDate:now];
             NSInteger diffWeeks = endWeek - startWeek;
             if (diffWeeks == 0)
@@ -261,10 +261,10 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
             else
             {
                 NSInteger startMonth = [calendar ordinalityOfUnit:NSCalendarUnitMonth
-                                                           inUnit:NSEraCalendarUnit
+                                                           inUnit:NSCalendarUnitEra
                                                           forDate:self];
                 NSInteger endMonth = [calendar ordinalityOfUnit:NSCalendarUnitMonth
-                                                         inUnit:NSEraCalendarUnit
+                                                         inUnit:NSCalendarUnitEra
                                                         forDate:now];
                 NSInteger diffMonths = endMonth - startMonth;
                 if (diffMonths == 0)
@@ -278,10 +278,10 @@ NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPa
                 else
                 {
                     NSInteger startYear = [calendar ordinalityOfUnit:NSCalendarUnitYear
-                                                              inUnit:NSEraCalendarUnit
+                                                              inUnit:NSCalendarUnitEra
                                                              forDate:self];
                     NSInteger endYear = [calendar ordinalityOfUnit:NSCalendarUnitYear
-                                                            inUnit:NSEraCalendarUnit
+                                                            inUnit:NSCalendarUnitEra
                                                            forDate:now];
                     NSInteger diffYears = endYear - startYear;
                     if (diffYears == 0)
